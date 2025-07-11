@@ -5,12 +5,15 @@ import TrainerDashboard from "./pages/TrainerDashboard";
 import ClientProfile from "./pages/ClientProfile";
 import RoleRoute from "./components/RoleRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
+import Unauthorized from "./pages/Unauthorized";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
 
+      {/* Protected Routes */}
       <Route
         path="/admin/dashboard"
         element={

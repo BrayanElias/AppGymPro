@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         try {
             console.log("Llamando a backend con:", email, password); // ✅ DEBUG
 
-            const response = await fetch("http://localhost:8000/login", {
+            const response = await fetch("https://appgympro.onrender.com/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }) // El backend detecta el rol

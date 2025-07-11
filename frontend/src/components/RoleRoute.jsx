@@ -17,7 +17,7 @@ const RoleRoute = ({ allowedRole, children }) => {
 
         // Si el rol del usuario no coincide con el rol permitido, redirige al inicio
         if (userRole !== allowedRole) {
-            return <Navigate to="/" replace />;
+            return <Navigate to="/unauthorized" replace />;
         }
 
         // Si el rol es válido, renderiza los hijos (contenido protegido)
