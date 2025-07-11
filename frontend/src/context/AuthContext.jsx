@@ -14,9 +14,13 @@ export const AuthProvider = ({ children }) => {
 
             const response = await fetch("https://appgympro.onrender.com/login", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }) // El backend detecta el rol
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+                mode: "cors", // <-- Asegúrate de que esto está
             });
+
 
             if (!response.ok) {
                 const errorData = await response.json();
