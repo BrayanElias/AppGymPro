@@ -48,6 +48,9 @@ function App() {
       />
 
       <Route path="/unauthorized" element={<Unauthorized />} />
+
+      {/* Ruta comodín para cualquier ruta no encontrada */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
