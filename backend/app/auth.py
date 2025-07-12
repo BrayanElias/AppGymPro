@@ -5,6 +5,7 @@ from app.models import User
 from app.schemas import UserCreate, UserOut, Token, LoginInput
 from app.security import hash_password, verify_password, create_access_token
 
+# 🛡️ Rutas de autenticación
 router = APIRouter()
 
 # Dependencia para la sesión de base de datos
