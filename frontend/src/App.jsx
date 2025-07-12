@@ -11,7 +11,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/unauthorized" element={<Unauthorized />} />
 
       {/* Protected Routes */}
       <Route
@@ -36,6 +35,7 @@ function App() {
         }
       />
 
+
       <Route
         path="/client/me"
         element={
@@ -46,6 +46,8 @@ function App() {
           </RoleRoute>
         }
       />
+
+      <Route path="/unauthorized" element={<Unauthorized />} />
     </Routes>
   );
 }
