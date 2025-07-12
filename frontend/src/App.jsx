@@ -28,7 +28,7 @@ function App() {
       <Route
         path="/trainer/dashboard"
         element={
-          <RoleRoute allowedRole="entrenador">
+          <RoleRoute allowedRole="trainer">
             <DashboardLayout>
               <TrainerDashboard />
             </DashboardLayout>
@@ -39,7 +39,7 @@ function App() {
       <Route
         path="/client/me"
         element={
-          <RoleRoute allowedRole="cliente">
+          <RoleRoute allowedRole="client">
             <DashboardLayout>
               <ClientProfile />
             </DashboardLayout>
