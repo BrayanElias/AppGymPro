@@ -15,8 +15,8 @@ const RoleRoute = ({ allowedRole, children }) => {
         // Obtener el rol del usuario del payload
         const userRole = payload.role;
 
-        // Si el rol del usuario no coincide con el rol permitido, redirige al inicio
         if (userRole !== allowedRole) {
+            console.warn("🚫 Acceso denegado. Rol actual:", userRole, "| Rol requerido:", allowedRole);
             return <Navigate to="/unauthorized" replace />;
         }
 

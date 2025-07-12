@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ email, password }),
-                mode: "cors", // <-- Asegúrate de que esto está
+                mode: "cors",
             });
 
 
