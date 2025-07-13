@@ -97,13 +97,4 @@ def reset_password(data: ResetPasswordRequest, db: Session = Depends(get_db)):
         logger.error(f"[RECUPERACIÓN] Error al restablecer la contraseña: {e}")
         logger.error(traceback.format_exc())
         raise HTTPException(status_code=400, detail="Token inválido o expirado")
-    email = verify_reset_token(data.token)
-
-    user = db.query(User).filter(User.email == email).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="Usuario no encontrado")
-
-    user.hashed_password = hash_password(data.new_password)
-    db.commit()
-
-    return {"msg": "Contraseña actualizada correctamente"}
+    
