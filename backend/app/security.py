@@ -94,3 +94,36 @@ def require_role(required_role: str):
             )
         return user
     return role_checker
+
+
+# ========================
+# Token de recuperación de contraseña
+# ========================
+
+RESET_SECRET_KEY = os.getenv("RESET_SECRET_KEY", "clave_secreta_para_reset")
+RESET_TOKEN_EXPIRE_MINUTES = int(os.getenv("RESET_TOKEN_EXPIRE_MINUTES", "30"))
+
+def create_reset_token(email: str) -> str:
+    expire = datetime.now(timezone.utc) + timedelta(minutes=RESET_TOKEN_EXPIRE_MINUTES)
+    payload = {
+        "sub": email,
+        "exp": expire
+    }
+    print("RESET_SECRET_KEY:", RESET_SECRET_KEY)
+    return jwt.encode(payload, RESET_SECRET_KEY, algorithm=ALGORITHM)
+
+
+
+# verificar token de recuperación de contraseña
+
+def verify_reset_token(token: str) -> str:
+    try:
+        payload = jwt.decode(token, RESET_SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        if email is None:
+            print("RESET_TOKEN_EXPIRE_MINUTES:", RESET_TOKEN_EXPIRE_MINUTES)    
+            raise HTTPException(status_code=400, detail="Token inválido")
+        return email
+    except JWTError:
+        raise HTTPException(status_code=400, detail="Token expirado o inválido")
+

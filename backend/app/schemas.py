@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 
 # Para crear usuario (registro)
@@ -29,3 +29,12 @@ class TokenData(BaseModel):
 class LoginInput(BaseModel):
     email: str
     password: str
+
+# Para solicitar restablecimiento de contraseña
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+# Para restablecer contraseña (con token)
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str = Field(min_length=6)
