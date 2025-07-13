@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         try {
             console.log("Llamando a backend con:", email, password); // ✅ DEBUG
 
-            const response = await fetch("https://appgympro.onrender.com/login", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -20,6 +20,8 @@ export const AuthProvider = ({ children }) => {
                 body: JSON.stringify({ email, password }),
                 mode: "cors",
             });
+
+            console.log("API_URL es:", import.meta.env.VITE_API_URL);
 
 
             if (!response.ok) {
