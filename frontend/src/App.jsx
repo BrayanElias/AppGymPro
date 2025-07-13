@@ -7,7 +7,6 @@ import RoleRoute from "./components/RoleRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Unauthorized from "./pages/Unauthorized";
 import NotFound from "./pages/NotFound";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
@@ -49,8 +48,6 @@ function App() {
         }
       />
 
-      {/* Ruta para restablecer contraseña */}
-      <Route path="/reset-password" element={<ResetPasswordPage />} />
 
       {/* Ruta para no autorizado */}
       <Route path="/unauthorized" element={<Unauthorized />} />
