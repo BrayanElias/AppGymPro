@@ -1,3 +1,2 @@
-def send_password_reset_email(to_email: str, token: str):
-    reset_link = f"https://appgympro.netlify.app/reset-password?token={token}"
+def send_password_reset_email(to_email: str, reset_link: str):
     print(f"[RECUPERACIÓN] Enlace enviado a {to_email}: {reset_link}")

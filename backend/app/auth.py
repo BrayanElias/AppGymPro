@@ -2,15 +2,17 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.models import User
-from app.schemas import UserCreate, UserOut, Token, LoginInput
-from app.security import hash_password, verify_password, create_access_token
-from app.schemas import ForgotPasswordRequest
-from app.security import create_reset_token
-from app.email_utils import send_password_reset_email  # la función que haremos ahora
-from app.schemas import ResetPasswordRequest
-from app.security import verify_reset_token, hash_password
+from app.schemas import UserCreate, UserOut, Token, LoginInput, ForgotPasswordRequest, ResetPasswordRequest
+from app.security import (
+    hash_password,
+    verify_password,
+    create_access_token,
+    create_reset_token,
+    verify_reset_token,
+)
+from app.email_utils import send_password_reset_email  # Asegúrate de tener esta función
+import os
 
-# 🛡️ Rutas de autenticación
 router = APIRouter()
 
 # Dependencia para la sesión de base de datos
@@ -21,7 +23,9 @@ def get_db():
     finally:
         db.close()
 
-# 📝 Registro (solo desde dashboard admin, no visible en frontend)
+# ==========================
+# Registro
+# ==========================
 @router.post("/register", response_model=UserOut)
 def register(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(User.email == user.email).first()
@@ -35,7 +39,9 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     db.refresh(new_user)
     return new_user
 
-# 🔑 Login (solo email y password)
+# ==========================
+# Login
+# ==========================
 @router.post("/login", response_model=Token)
 def login(user: LoginInput, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.email == user.email).first()
@@ -47,8 +53,9 @@ def login(user: LoginInput, db: Session = Depends(get_db)):
 
     return {"access_token": token, "token_type": "bearer"}
 
-
-# 🛠️ Restablecer contraseña
+# ==========================
+# Solicitud de restablecimiento
+# ==========================
 @router.post("/auth/forgot-password")
 def forgot_password(data: ForgotPasswordRequest, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == data.email).first()
@@ -56,12 +63,20 @@ def forgot_password(data: ForgotPasswordRequest, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="El usuario no existe")
 
     token = create_reset_token(user.email)
-    send_password_reset_email(user.email, token)
 
-    return {"msg": "Se ha enviado un correo para restablecer tu contraseña."}
+    # Leer FRONTEND_URL desde .env (usa localhost en desarrollo por defecto)
+    FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+    reset_link = f"{FRONTEND_URL}/reset-password?token={token}"
+    print(f"[RECUPERACIÓN] Enlace generado para {user.email}: {reset_link}")
 
+    # Envía el correo
+    send_password_reset_email(user.email, reset_link)
 
-# 🔄 Restablecer contraseña con token
+    return {"msg": "Se ha enviado un enlace para restablecer tu contraseña."}
+
+# ==========================
+# Restablecer contraseña
+# ==========================
 @router.post("/auth/reset-password")
 def reset_password(data: ResetPasswordRequest, db: Session = Depends(get_db)):
     email = verify_reset_token(data.token)

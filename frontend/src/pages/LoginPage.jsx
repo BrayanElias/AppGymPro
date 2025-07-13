@@ -56,6 +56,16 @@ const LoginPage = () => {
                     </button>
                 </form>
 
+                <div className="mt-4 text-center">
+                    <button
+                        type="button"
+                        className="text-sm text-blue-600 hover:underline"
+                        onClick={() => navigate("/forgot-password")}
+                    >
+                        ¿Olvidaste tu contraseña?
+                    </button>
+                </div>
+
                 {error && (
                     <div className="mt-4 text-red-500 text-sm text-center">
                         {Array.isArray(error)
