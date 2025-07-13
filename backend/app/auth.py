@@ -12,6 +12,8 @@ from app.security import (
 )
 from app.email_utils import send_password_reset_email  # Asegúrate de tener esta función
 import os
+from logging import getLogger
+logger = getLogger(__name__)
 
 router = APIRouter()
 
@@ -79,6 +81,22 @@ def forgot_password(data: ForgotPasswordRequest, db: Session = Depends(get_db)):
 # ==========================
 @router.post("/auth/reset-password")
 def reset_password(data: ResetPasswordRequest, db: Session = Depends(get_db)):
+    try:
+        email = verify_reset_token(data.token)
+
+        user = db.query(User).filter(User.email == email).first()
+        if not user:
+            raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+        user.hashed_password = hash_password(data.new_password)
+        db.commit()
+
+        return {"msg": "Contraseña actualizada correctamente"}
+    except Exception as e:
+        import traceback
+        logger.error(f"[RECUPERACIÓN] Error al restablecer la contraseña: {e}")
+        logger.error(traceback.format_exc())
+        raise HTTPException(status_code=400, detail="Token inválido o expirado")
     email = verify_reset_token(data.token)
 
     user = db.query(User).filter(User.email == email).first()
