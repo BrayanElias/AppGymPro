@@ -66,7 +66,7 @@ const LoginPage = () => {
                             te acerca a la versión más fuerte de ti mismo.
                         </p>
 
-                        <div className="mt-4 text-center text-sm md:text-base italic min-h-[70px] flex items-center justify-center border">
+                        <div className="mt-4 text-center text-sm md:text-base italic min-h-[70px] flex items-center justify-center">
                             <span className="text-yellow-400 block">
                                 <Typewriter
                                     words={[
