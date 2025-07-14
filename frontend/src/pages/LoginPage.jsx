@@ -37,7 +37,7 @@ const LoginPage = () => {
             <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
 
             {/* Contenido principal */}
-            <div className="relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center justify-center min-h-screen gap-8">
+            <div className="relative z-10 container mx-auto px-6 py-6 lg:py-0 flex flex-col md:flex-row items-center justify-center min-h-screen gap-8 ">
                 {/* Textos motivacionales */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-white text-start space-y-3">
                     <div className="max-w-md">
@@ -48,33 +48,34 @@ const LoginPage = () => {
                                 className="w-16 h-16 md:w-40 md:h-24 object-contain drop-shadow-lg"
                             />
                             <h1 className="text-4xl font-extrabold tracking-normal leading-tight font-poppins text-center">
-                                POWER
+                                PODER
                             </h1>
                         </div>
 
                         <h2 className="text-4xl text-center font-extrabold tracking-normal bg-gradient-to-r from-yellow-400 via-red-500 to-red-700 bg-clip-text text-transparent drop-shadow-xl animate-fade-in-up delay-500 font-poppins uppercase">
-                            DISCIPLINE
+                            DISCIPLINA
                         </h2>
 
                         <h3 className="text-4xl text-center font-extrabold tracking-normal text-white drop-shadow-[0_2px_15px_rgba(255,255,255,0.2)] animate-fade-in-up delay-500 font-poppins uppercase">
-                            DETERMINATION
+                            DETERMINACIÓN
                         </h3>
 
 
                         <p className="font-poppins text-center mt-6 text-lg md:text-xl leading-relaxed text-gray-200">
-                            Step into the grind where every rep, every drop of sweat,<br />
-                            brings you closer to the strongest version of you.
+                            Adéntrate en el esfuerzo donde cada repetición, cada gota de sudor,<br />
+                            te acerca a la versión más fuerte de ti mismo.
                         </p>
 
                         <div className="mt-4 text-center text-sm md:text-base italic min-h-[60px] flex items-center justify-center">
                             <span className="text-yellow-400 block">
                                 <Typewriter
                                     words={[
-                                        "Your physical transformation starts now. Time to lift!",
-                                        "No pain, no gain. Let's grind!",
-                                        "Discipline is the bridge between goals and results.",
-                                        "Push harder than yesterday if you want a different tomorrow.",
-                                        "Success starts with self-belief and sweat."
+                                        "Tu transformación física comienza ahora. ¡Hora de levantar!",
+                                        "Sin dolor no hay ganancia. ¡A darlo todo!",
+                                        "La disciplina es el puente entre las metas y los resultados.",
+                                        "Esfuérzate más que ayer si quieres un mañana diferente.",
+                                        "El éxito comienza con la confianza en uno mismo y el sudor."
+
                                     ]}
                                     loop={true}
                                     cursor
@@ -93,8 +94,8 @@ const LoginPage = () => {
                 </div>
 
                 {/* Formulario */}
-                <div className="w-full md:w-1/3 flex justify-center items-center ">
-                    <div className="bg-white bg-opacity-10 backdrop-blur-lg p-8 rounded-2xl border border-white border-opacity-20 max-w-xs w-full shadow-2xl">
+                <div className="w-full md:w-1/3 min-w-[320px] flex justify-center items-center">
+                    <div className="bg-white bg-opacity-10 backdrop-blur-lg p-8 rounded-2xl border border-white border-opacity-20 max-w-md w-full shadow-2xl">
                         <img
                             src="/logo_mancuerna.png"
                             alt="Gym Logo"
