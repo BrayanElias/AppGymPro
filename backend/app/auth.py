@@ -35,11 +35,17 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="El correo ya está registrado")
 
     hashed_pwd = hash_password(user.password)
-    new_user = User(email=user.email, hashed_password=hashed_pwd, role=user.role)
+
+    new_user = User(
+        email=user.email,
+        hashed_password=hashed_pwd,
+        role="client",  # 🔒 ignoramos user.role, lo forzamos a "client"
+    )
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     return new_user
+
 
 # ==========================
 # Login

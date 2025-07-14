@@ -5,7 +5,8 @@ from typing import Optional
 class UserCreate(BaseModel):
     email: EmailStr
     password: str
-    role: str  # admin / entrenador / cliente
+    role: Optional[str] = None  # 🔒 oculto, no lo usa el frontend
+
 
 # Para respuesta cuando se crea o consulta un usuario
 class UserOut(BaseModel):

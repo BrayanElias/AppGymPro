@@ -9,6 +9,7 @@ import Unauthorized from "./pages/Unauthorized";
 import NotFound from "./pages/NotFound";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -60,6 +61,9 @@ function App() {
       {/* Rutas de recuperación de contraseña */}
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+      {/* Ruta de registro */}
+      <Route path="/register" element={<RegisterPage />} />
 
     </Routes>
   );
