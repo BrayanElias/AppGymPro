@@ -107,12 +107,9 @@ const RegisterPage = () => {
 
                 {/* Enlace para usuarios que ya tienen cuenta */}
                 <p className="text-white text-sm mt-6 text-center">
-                    ¿Ya tienes una cuenta?{" "}
-                    <button
-                        onClick={() => navigate("/")}
-                        className="underline hover:text-blue-400"
-                    >
-                        Iniciar sesión
+                    Already have an account?{" "}
+                    <button onClick={() => navigate("/login")} className="underline hover:text-blue-400">
+                        Sign In
                     </button>
                 </p>
             </div>
