@@ -6,24 +6,61 @@
  * - Ver entrenadores disponibles
  * - Ver clientes sin asignar
  * - Asignar cliente a entrenador según especialidad/disponibilidad
- * 
- * Esta es una vista base de ejemplo.
  */
 
+
 const AssignmentsPanel = () => {
+    // Datos de ejemplo temporales
+    const trainers = [
+        { id: 1, name: "Laura Díaz" },
+        { id: 2, name: "Carlos Pérez" },
+    ];
+
+    const clients = [
+        { id: 1, name: "Ana Torres" },
+        { id: 2, name: "Luis Gómez" },
+    ];
+
     return (
-        <div>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Asignaciones entrenador-cliente</h2>
+        <div className="p-4 space-y-6">
+            <h2 className="text-2xl font-semibold text-gray-800">
+                Asignaciones entrenador-cliente
+            </h2>
 
-            <p className="text-gray-600 mb-4">Aquí podrás asignar clientes a entrenadores según sus necesidades.</p>
+            <p className="text-gray-600">
+                Aquí podrás asignar clientes a entrenadores según sus necesidades.
+            </p>
 
-            {/* Maqueta temporal */}
-            <div className="bg-gray-100 p-4 rounded shadow">
-                <p><strong>Entrenador:</strong> Laura Díaz</p>
-                <p><strong>Clientes asignados:</strong> 5</p>
-                <button className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-                    Asignar nuevo cliente
-                </button>
+            <div className="grid md:grid-cols-2 gap-6">
+                {/* Lista de entrenadores */}
+                <div className="bg-white rounded-xl shadow p-4">
+                    <h3 className="text-lg font-semibold text-blue-700 mb-2">Entrenadores disponibles</h3>
+                    <ul className="space-y-2">
+                        {trainers.map((trainer) => (
+                            <li key={trainer.id} className="p-3 bg-blue-50 rounded-lg">
+                                <strong>{trainer.name}</strong>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Lista de clientes */}
+                <div className="bg-white rounded-xl shadow p-4">
+                    <h3 className="text-lg font-semibold text-green-700 mb-2">Clientes sin asignar</h3>
+                    <ul className="space-y-2">
+                        {clients.map((client) => (
+                            <li key={client.id} className="p-3 bg-green-50 rounded-lg">
+                                <strong>{client.name}</strong>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+
+            {/* Área de asignaciones futuras */}
+            <div className="bg-gray-100 rounded-xl shadow p-4">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">Asignaciones realizadas</h3>
+                <p className="text-gray-600 italic">Aquí aparecerán las asignaciones hechas.</p>
             </div>
         </div>
     );

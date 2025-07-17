@@ -104,9 +104,9 @@ const TrainersPanel = () => {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {trainers.map((trainer) => (
                         <li key={trainer.id} className="p-4 border rounded shadow bg-white space-y-2">
-                            <p><strong>ID:</strong> {trainer.id}</p>
-                            <p><strong>Email:</strong> {trainer.email}</p>
+                            {/* <p><strong>ID:</strong> {trainer.id}</p> */}
                             <p><strong>Nombre:</strong> {trainer.name}</p>
+                            <p><strong>Email:</strong> {trainer.email}</p>
                             <p><strong>Especialidad:</strong> {trainer.specialty}</p>
                             <p><strong>Teléfono:</strong> {trainer.phone}</p>
                             <p><strong>Rol:</strong> {trainer.role}</p>

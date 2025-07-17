@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import roles
 from app.routers import auth  # auth: login/registro, roles: rutas protegidas por rol (admin, trainer, client)
 from app.routers.admin import trainers  # 🔧 Rutas específicas del admin para gestión de entrenadores
+from app.routers.admin import clients
 
 # 🚀 Crea una instancia de la aplicación FastAPI
 app = FastAPI(
@@ -32,3 +33,6 @@ app.include_router(roles.router)
 
 # 🛠️ Rutas del administrador: gestión de entrenadores (CRUD)
 app.include_router(trainers.router)
+
+# 🛠️ Rutas del administrador: gestión de clientes
+app.include_router(clients.router)

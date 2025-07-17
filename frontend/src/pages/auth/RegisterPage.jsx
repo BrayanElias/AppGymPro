@@ -41,7 +41,7 @@ const RegisterPage = () => {
             }
 
             setSuccess("Cuenta creada exitosamente. Redirigiendo al login...");
-            setTimeout(() => navigate("/"), 1500);
+            setTimeout(() => navigate("/login"), 1500);
         } catch (err) {
             setError(err.message);
         }
